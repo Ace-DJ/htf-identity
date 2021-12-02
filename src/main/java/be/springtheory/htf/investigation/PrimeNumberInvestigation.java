@@ -4,7 +4,6 @@ import be.springtheory.htf.investigation.Parameters.PrimeNumberParameters;
 import com.google.gson.Gson;
 import org.springframework.stereotype.Component;
 
-@Component
 public class PrimeNumberInvestigation implements InvestigationStrategy {
     private Gson gson;
 

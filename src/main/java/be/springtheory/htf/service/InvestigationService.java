@@ -6,8 +6,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @Slf4j
@@ -21,15 +23,18 @@ public class InvestigationService {
         this.investigationStrategyStrategies = investigationStrategyStrategies;
     }
 
-    private void solveInvestigations(List<Investigation> investigationStrategyList){
+    public Set<String> solveInvestigations(List<Investigation> investigationStrategyList){
+        Set<String> clues = new HashSet<>();
         for (final Investigation investigation : investigationStrategyList) {
             var investigationOptional = getInvestigation(investigation.getInvestigation());
             if(investigationOptional.isPresent()) {
                 String answer = investigationOptional.get().solve(investigation.getInvestigationParameters());
                Investigation investigationAnswer = restService.solveInvestigation(investigation.getId(),answer);
+               clues.add(investigationAnswer.getOutcome());
                log.info(investigationAnswer.toString());
             }
         }
+        return clues;
     }
 
     private Optional<InvestigationStrategy> getInvestigation(String investigationString) {
