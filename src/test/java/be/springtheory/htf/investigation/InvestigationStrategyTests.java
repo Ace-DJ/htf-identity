@@ -3,11 +3,13 @@ package be.springtheory.htf.investigation;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@ActiveProfiles("test")
 @SpringBootTest
 public class InvestigationStrategyTests {
 
@@ -91,8 +93,8 @@ public class InvestigationStrategyTests {
     public void ancientAlgorithmTest(){
         String investigationString = "The following string is encrypted with an ancient algorithm, invented in one of the mightiest empires of all time.Tip: one of the leaders of this empire.";
         InvestigationStrategy investigation = getInvestigation(investigationString);
-        String solved = investigation.solve("{\"cipher\":\"khoor zruog\",\"shift\":\"3\"}");
-        assertEquals("hello world",solved);
+        String solved = investigation.solve("{\"cipher\":\"khoorzruog\",\"shift\":\"23\"}");
+        assertEquals("helloworld",solved);
     }
 
     @Test

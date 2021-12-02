@@ -60,12 +60,26 @@ public class RestService {
         return response.getBody();
     }
 
-    public Investigation solveInvestigation(String id, String answer) {
+    public Investigation solveSingle(String id, String answer) {
         final Map<String,String> params = new HashMap<>();
         params.put("investigationId",id);
         params.put("answer",answer);
         var response = template.postForEntity(INVESTIGATION_URL,null, Investigation.class,params);
         return response.getBody();
+    }
+
+    public Investigation solveMultiple(String id, String answer) {
+        final Map<String,String> params = new HashMap<>();
+        params.put("investigationId",id);
+        params.put("answer",answer);
+        try{
+            var response = template.postForEntity(INVESTIGATION_URL,null, Investigation.class,params);
+            return response.getBody();
+        }catch (HttpClientErrorException.BadRequest exception){
+            log.info("Not correct");
+            return null;
+        }
+
     }
 
 
