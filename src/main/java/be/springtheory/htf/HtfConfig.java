@@ -12,4 +12,9 @@ public class HtfConfig {
     public RestTemplate webClient() {
         return new RestTemplate();
     }
+
+    @Bean
+    public String teamId() {
+        return "739ca66d-984a-4712-b1a9-0f8b535da7c8";
+    }
 }

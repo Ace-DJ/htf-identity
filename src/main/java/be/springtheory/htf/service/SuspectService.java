@@ -10,16 +10,18 @@ import java.util.List;
 @Service
 @Slf4j
 public class SuspectService {
-    private final List<Suspect> possibleSuspects;
+    private List<Suspect> possibleSuspects ;
     private final RestService restService;
-
 
     @Autowired
     public SuspectService(RestService restService) {
         this.restService = restService;
-        possibleSuspects = restService.getSuspects();
-        for (Suspect possibleSuspect : possibleSuspects) {
-            log.info(possibleSuspect.getName());
+    }
+
+    public List<Suspect> getAllSuspects() {
+        if (possibleSuspects == null) {
+            possibleSuspects = restService.getSuspects();
         }
+        return possibleSuspects;
     }
 }
