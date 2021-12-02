@@ -4,6 +4,10 @@ import be.springtheory.htf.investigation.Parameters.PrimeNumberParameters;
 import com.google.gson.Gson;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 @Component
 public class PrimeNumberInvestigation implements InvestigationStrategy {
     private Gson gson;
@@ -15,14 +19,13 @@ public class PrimeNumberInvestigation implements InvestigationStrategy {
     @Override
     public String solve(String investigationParameters) {
         PrimeNumberParameters primeNumberParameters = gson.fromJson(investigationParameters, PrimeNumberParameters.class);
-        StringBuilder answer = new StringBuilder();
+        List<Integer> answer = new ArrayList<>();
         for (int i = primeNumberParameters.getStart(); i <= primeNumberParameters.getEnd(); i++) {
             if (checkForPrime(i)) {
-                answer.append(i).append(", ");
+                answer.add(i);
             }
         }
-        answer.delete(answer.length() - 2, answer.length());
-        return answer.toString();
+        return answer.toString().replace(" ", "");
     }
 
     @Override

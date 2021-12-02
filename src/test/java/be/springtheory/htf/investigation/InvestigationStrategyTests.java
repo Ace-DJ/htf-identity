@@ -48,8 +48,8 @@ public class InvestigationStrategyTests {
     public void primesTest() {
         String investigationString = "Find all the primes between the start and end index (both inclusive)";
         InvestigationStrategy investigation = getInvestigation(investigationString);
-        String solved = investigation.solve("{\"start\":2,\"end\":23}");
-        assertEquals("2, 3, 4, 5, 7, 11, 13, 17, 19, 23",solved);
+        String solved = investigation.solve("{\"start\":4831,\"end\":4900}");
+        assertEquals("[4831,4861,4871,4877,4889]",solved);
     }
 
     @Test
