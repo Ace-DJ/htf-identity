@@ -23,7 +23,7 @@ public class InvestigationStrategyTests {
         String investigationString = "Decode the following string";
         InvestigationStrategy investigationStrategy = getInvestigation(investigationString);
         String solved = investigationStrategy.solve("-. ..- .-- .-.. -.- -..- -..- -. .-.. ..- -.");
-        assertEquals("n u w l k x x n l u n",solved);
+        assertEquals("nuwlkxxnlun",solved);
     }
 
     @Test
@@ -85,6 +85,14 @@ public class InvestigationStrategyTests {
         InvestigationStrategy investigation = getInvestigation(investigationString);
         String solved = investigation.solve("{\"month\":\"6\",\"year\":\"1995\"}");
         assertEquals("THURSDAY-FRIDAY",solved);
+    }
+
+    @Test
+    public void ancientAlgorithmTest(){
+        String investigationString = "The following string is encrypted with an ancient algorithm, invented in one of the mightiest empires of all time.Tip: one of the leaders of this empire.";
+        InvestigationStrategy investigation = getInvestigation(investigationString);
+        String solved = investigation.solve("{\"cipher\":\"khoor zruog\",\"shift\":\"3\"}");
+        assertEquals("hello world",solved);
     }
 
 }

@@ -33,6 +33,11 @@ public class RestService {
         this.teamId = teamId;
     }
 
+    public List<Suspect> getSuspects() {
+        var response = template.getForEntity(SUSPECTS_URL,  Suspect[].class);
+        return List.of(response.getBody());
+    }
+
     public Case createCase() {
         final Map<String,String> params = new HashMap<>();
         params.put("teamId",teamId);

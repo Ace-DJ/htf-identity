@@ -38,11 +38,11 @@ public class CaseService {
                 break;
             }
             case 1:{
-                log.info("Single suspect found! {}",suspects.get(0).getName());
+                log.info("Single suspect found! guessing {}",suspects.get(0).getName());
                 result= restService.closeCase(htfCase.getCaseId(),suspects.get(0).getId());
             }
             default:{
-                log.info("More then one suspect found!");
+                log.info("Found {} suspects! guessing {}",suspects.size(),suspects.get(0).getName());
                 result= restService.closeCase(htfCase.getCaseId(),suspects.get(0).getId());
             }
         }

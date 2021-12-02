@@ -28,10 +28,12 @@ public class InvestigationService {
         for (final Investigation investigation : investigationStrategyList) {
             var investigationOptional = getInvestigation(investigation.getInvestigation());
             if(investigationOptional.isPresent()) {
-                String answer = investigationOptional.get().solve(investigation.getInvestigationParameters());
+               String answer = investigationOptional.get().solve(investigation.getInvestigationParameters());
                Investigation investigationAnswer = restService.solveInvestigation(investigation.getId(),answer);
                clues.add(investigationAnswer.getOutcome());
-               log.info(investigationAnswer.toString());
+               log.info("Solved investigation {} with clue {}",investigationAnswer.getInvestigation(),investigationAnswer.getOutcome());
+            }else {
+                log.warn("Could not find investigation for {}",investigation.getInvestigation());
             }
         }
         return clues;
