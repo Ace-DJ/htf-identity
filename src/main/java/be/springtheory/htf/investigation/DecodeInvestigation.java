@@ -18,7 +18,7 @@ public class DecodeInvestigation implements InvestigationStrategy {
         for (String paramMorseLetter : paramMorse) {
             for (int i = 0; i < morse.length; i++) {
                 if (morse[i].equals(paramMorseLetter)) {
-                    builder.append(language[i]);
+                    builder.append(language[i]).append(' ');
                     i = morse.length;
                 }
             }

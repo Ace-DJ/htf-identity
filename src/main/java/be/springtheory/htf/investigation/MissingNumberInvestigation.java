@@ -1,12 +1,10 @@
 package be.springtheory.htf.investigation;
 
-import be.springtheory.htf.investigation.Parameters.MissingNumbersParameters;
 import com.google.gson.Gson;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+
 
 public class MissingNumberInvestigation implements InvestigationStrategy {
     private Gson gson;
@@ -26,22 +24,21 @@ public class MissingNumberInvestigation implements InvestigationStrategy {
             results[i] = Integer.parseInt(sequence[i]);
         }
         StringBuilder stringBuilder = new StringBuilder();
-        int num1 = 0, num2 = 1, mistakes = 0;
+        int num1 = 0, num2 = 1, offset = 0;
 
-        for (int i = 0; i < results.length; i++) {
-            if (num1 > Arrays.stream(results).max().orElse(0)) {
+        for (int i = 0; i + offset < results.length; i++) {
+            if (num1 != results[i - offset]) {
+                stringBuilder.append(num1).append(",");
+                offset++;
+            }
+            if (num2 > Arrays.stream(results).max().orElse(0)) {
                 num1 = 0;
                 num2 = 1;
+            }else{
+                int sumOfPrevTwo = num1 + num2;
+                num1 = num2;
+                num2 = sumOfPrevTwo;
             }
-            if (num1 != results[i - mistakes]) {
-                stringBuilder.append(num1).append(",");
-                mistakes++;
-            }
-
-            int sumOfPrevTwo = num1 + num2;
-            num1 = num2;
-            num2 = sumOfPrevTwo;
-
         }
         stringBuilder.deleteCharAt(stringBuilder.length() - 1);
         return stringBuilder.toString();
