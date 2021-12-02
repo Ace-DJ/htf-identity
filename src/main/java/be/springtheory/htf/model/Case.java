@@ -7,10 +7,9 @@ import lombok.Setter;
 import java.util.List;
 import java.util.UUID;
 
-@AllArgsConstructor
 @Getter
 @Setter
 public class Case {
-    private final UUID uuid;
-    private final List<Investigation> investigationList;
+    private String caseId;
+    private Investigation[] investigations;
 }
