@@ -20,8 +20,9 @@ public class CaseRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         while (true){
+            //Infinite loop that will crack a case every 10 seconds
             caseService.crackCase();
-            Thread.sleep(10000);
+            Thread.sleep(3000);
         }
     }
 }

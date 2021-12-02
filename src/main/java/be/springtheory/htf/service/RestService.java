@@ -76,7 +76,6 @@ public class RestService {
             var response = template.postForEntity(INVESTIGATION_URL,null, Investigation.class,params);
             return response.getBody();
         }catch (HttpClientErrorException.BadRequest exception){
-            log.info("Not correct");
             return null;
         }
 

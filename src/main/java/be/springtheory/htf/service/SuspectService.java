@@ -35,10 +35,10 @@ public class SuspectService {
     }
 
     public List<Suspect> findPossibleSuspects(Set<String> clues){
-        List<Suspect> remainingSuspects = List.copyOf(getAllSuspects());
-        return remainingSuspects.stream().filter(suspect -> {
+        //See if any suspects contain our clues
+        return getAllSuspects().stream().filter(suspect -> {
             for (String clue : clues) {
-                //If one of our clues is not in the suspect
+                //If one of our clues is not in the suspect, filter it out
                 if(!suspect.getClues().contains(clue)){
                     return false;
                 }
@@ -51,14 +51,16 @@ public class SuspectService {
         log.info("Adding clues to murderer");
         var murdererOptional = possibleSuspects.stream().filter(suspect -> suspect.getId().equals(result.getMurderer().getId())).findFirst();
         if(murdererOptional.isPresent()){
-            Suspect murderer = murdererOptional.get();
-            cluesSet.forEach(s ->
-                    murderer.getClues().add(s));
-            murdererOptional.get().getClues().addAll(cluesSet);
-            log.info("New clues:{}",murdererOptional.get().getName());
-            murdererOptional.get().getClues().forEach(s -> log.info(s));
+            final Suspect murderer = murdererOptional.get();
+            cluesSet.forEach(s ->{
+                //Add each new clue to the murderer
+                if(!murderer.getClues().contains(s)){
+                    log.info("New clue: {}",s);
+                    murderer.getClues().add(s);
+                }
+            });
         }else {
-            log.error("There was an error ");
+            log.error("Could not find murderer! ");
         }
 
     }
