@@ -21,8 +21,9 @@ public class RestService {
     private static final String BASE_URL="https://htf.bewire.org";
     private static final String SUSPECTS_URL=BASE_URL+"/suspects";
     private static final String CASE_URL=BASE_URL+"/case?teamId={teamId}";
+    private static final String CASEGET_URL=BASE_URL+"/case/{caseId}";
     private static final String CASE_CLOSED_URL=BASE_URL+"/case/{caseId}/close?suspectId={suspectId}";
-    private static final String INVESTIGATION_URL=BASE_URL+"/investigation/{investigationId}?{answer}";
+    private static final String INVESTIGATION_URL=BASE_URL+"/investigation/{investigationId}?answer={answer}";
     private final RestTemplate template;
     private final String teamId;
 
@@ -32,16 +33,17 @@ public class RestService {
         this.teamId = teamId;
     }
 
-
-    public List<Suspect> getSuspects() {
-     var response = template.getForEntity(SUSPECTS_URL,Suspect[].class);
-     return List.of(response.getBody());
-    }
-
-    public Case getCase() {
+    public Case createCase() {
         final Map<String,String> params = new HashMap<>();
         params.put("teamId",teamId);
         var response = template.postForEntity(CASE_URL, null, Case.class, params);
+        return response.getBody();
+    }
+
+    public Case getCase(String caseId) {
+        final Map<String,String> params = new HashMap<>();
+        params.put("caseId",caseId);
+        var response = template.getForEntity(CASEGET_URL, Case.class, params);
         return response.getBody();
     }
 
