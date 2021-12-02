@@ -71,4 +71,12 @@ public class InvestigationStrategyTests {
         assertEquals("[0KU, h6Ev, 6IG, HGwp, xN4v, thoq, gUWf, v7It, HI3, 5kI]",solved);
     }
 
+    @Test
+    public void perfectNumberTest() {
+        String investigationString = "What is the Perfect Number in the nth position (1-based)?";
+        InvestigationStrategy investigation = getInvestigation(investigationString);
+        String solved = investigation.solve("\"{\"nth element\":\"3\"}\"");
+        assertEquals("496",solved);
+    }
+
 }
