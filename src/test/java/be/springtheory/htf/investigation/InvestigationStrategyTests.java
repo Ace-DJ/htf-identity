@@ -79,4 +79,12 @@ public class InvestigationStrategyTests {
         assertEquals("496",solved);
     }
 
+    @Test
+    public void firstLastDayTest(){
+        String investigationString = "Answer is the first and last day of the month (MONDAY - SUNDAY) eg: MONDAY-FRIDAY";;
+        InvestigationStrategy investigation = getInvestigation(investigationString);
+        String solved = investigation.solve("{\"month\":\"6\",\"year\":\"1995\"}");
+        assertEquals("THURSDAY-FRIDAY",solved);
+    }
+
 }
