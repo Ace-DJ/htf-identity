@@ -17,9 +17,9 @@ public class CaseRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        while (true){
+       /* while (true){
             caseService.crackCase();
             Thread.sleep(10000);
-        }
+        }*/
     }
 }

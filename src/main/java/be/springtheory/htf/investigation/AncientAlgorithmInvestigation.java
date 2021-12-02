@@ -2,7 +2,9 @@ package be.springtheory.htf.investigation;
 
 import be.springtheory.htf.investigation.Parameters.AncientParameters;
 import com.google.gson.Gson;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AncientAlgorithmInvestigation implements InvestigationStrategy{
     final private Gson gson;
 

@@ -6,7 +6,6 @@ import com.google.gson.Gson;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Component
 public class FirstLastDayInvestigation implements InvestigationStrategy{
