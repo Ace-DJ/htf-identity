@@ -63,4 +63,12 @@ public class InvestigationStrategyTests {
         assertEquals("N",wrongSolved);
     }
 
+    @Test
+    public void arrayListTest() {
+        String investigationString = "Replace string at given index in arraylist";
+        InvestigationStrategy investigation = getInvestigation(investigationString);
+        String solved = investigation.solve("{\"index\":\"3\",\"arrayList\":\"[0KU, h6Ev, 6IG, rhi, xN4v, thoq, gUWf, v7It, HI3, 5kI]\",\"replacement\":\"HGwp\"}");
+        assertEquals("[0KU, h6Ev, 6IG, HGwp, xN4v, thoq, gUWf, v7It, HI3, 5kI]",solved);
+    }
+
 }
