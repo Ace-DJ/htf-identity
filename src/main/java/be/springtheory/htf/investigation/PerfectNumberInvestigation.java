@@ -23,7 +23,7 @@ public class PerfectNumberInvestigation implements InvestigationStrategy{
         return "1";
     }
 
-    static boolean isPerfect(int n) {
+    private boolean isPerfect(int n) {
         int sum = 1;
 
         for (int i = 2; i * i <= n; i++) {
