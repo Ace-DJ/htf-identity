@@ -5,15 +5,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
-@SpringBootTest
-class DecodeInvestigationTest {
 
+@SpringBootTest
+class DisariumInvestigationTest {
     @Autowired
-   private DecodeInvestigation decodeInvestigation;
+    private DisariumInvestigation disariumInvestigation;
+
     @Test
     public void testSolve(){
-        String solved = decodeInvestigation.solve("-. ..- .-- .-.. -.- -..- -..- -. .-.. ..- -.");
-        assertEquals(solved,"n u w l k x x n l u n");
+        String solved = disariumInvestigation.solve("135");
+        assertEquals("Y",solved);
+        solved = disariumInvestigation.solve("134");
+        assertEquals("N",solved);
     }
 
 }
