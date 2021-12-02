@@ -5,7 +5,7 @@ import com.google.gson.Gson;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PrimeNumberInvestigation implements Investigation {
+public class PrimeNumberInvestigation implements InvestigationStrategy {
     private Gson gson;
 
     public PrimeNumberInvestigation(Gson gson) {

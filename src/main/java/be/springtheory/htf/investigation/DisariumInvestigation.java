@@ -3,7 +3,7 @@ package be.springtheory.htf.investigation;
 import org.springframework.stereotype.Component;
 
 @Component
-public class DisariumInvestigation implements Investigation{
+public class DisariumInvestigation implements InvestigationStrategy {
 
     @Override
     public String solve(String investigationParameters) {

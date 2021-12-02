@@ -2,6 +2,7 @@ package be.springtheory.htf.service;
 
 import be.springtheory.htf.model.Case;
 import be.springtheory.htf.model.CaseResult;
+import be.springtheory.htf.model.Investigation;
 import be.springtheory.htf.model.Suspect;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ public class RestService {
     private static final String SUSPECTS_URL=BASE_URL+"/suspects";
     private static final String CASE_URL=BASE_URL+"/case?teamId={teamId}";
     private static final String CASE_CLOSED_URL=BASE_URL+"/case/{caseId}/close?suspectId={suspectId}";
+    private static final String INVESTIGATION_URL=BASE_URL+"/investigation/{investigationId}?{answer}";
     private final RestTemplate template;
     private final String teamId;
 
@@ -50,4 +52,14 @@ public class RestService {
         var response = template.postForEntity(CASE_CLOSED_URL,null, CaseResult.class,params);
         return response.getBody();
     }
+
+    public Investigation solveInvestigation(String id, String answer) {
+        final Map<String,String> params = new HashMap<>();
+        params.put("investigationId",id);
+        params.put("answer",answer);
+        var response = template.postForEntity(INVESTIGATION_URL,null, Investigation.class,params);
+        return response.getBody();
+    }
+
+
 }
