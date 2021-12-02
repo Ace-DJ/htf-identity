@@ -44,4 +44,12 @@ public class InvestigationTests {
         assertEquals("tset",solved);
     }
 
+    @Test
+    public void PrimesTest() {
+        String investigationString = "Find all the primes between the start and end index (both inclusive)";
+        Investigation investigation = getInvestigation(investigationString);
+        String solved = investigation.solve("{\"start\":2,\"end\":23}");
+        assertEquals("2, 3, 4, 5, 7, 11, 13, 17, 19, 23",solved);
+    }
+
 }
