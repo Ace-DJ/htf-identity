@@ -33,7 +33,7 @@ public class PrimeNumberInvestigation implements InvestigationStrategy {
         return "Find all the primes between the start and end index (both inclusive)";
     }
 
-    static boolean checkForPrime(int inputNumber) {
+    private boolean checkForPrime(int inputNumber) {
         boolean isItPrime = true;
 
         if (inputNumber <= 1) {
